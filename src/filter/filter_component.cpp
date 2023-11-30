@@ -19,7 +19,7 @@
 FilterComponent::FilterComponent() : Node("pclsub")
 {
   subscriber_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
-    "/lidar/points", 
+    "/lidar/points", //pointcloud2 topics
     10, 
     std::bind(&FilterComponent::timer_callback, this, std::placeholders::_1)
   );
@@ -47,7 +47,7 @@ void FilterComponent::timer_callback(const sensor_msgs::msg::PointCloud2::Shared
   pcl::PassThrough<pcl::PointXYZI> pass;
   pass.setInputCloud(cloud);
   pass.setFilterFieldName("z");  // x axis
-  // extract point cloud between 1.0 and 3.0 m
+  // extract point cloud between 0.0 and 1.9 m
   pass.setFilterLimits(0.0, 1.9);
   // pass.setFilterLimitsNegative (true);   // extract range reverse
   pass.filter(*pass_cloud);
