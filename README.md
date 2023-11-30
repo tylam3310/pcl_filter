@@ -1,3 +1,4 @@
 # pcl_filter
-pointcloud filters and clustering under ROS2 (humble)
-Lidar being used: Hesai Lidar QT64
+pointcloud filters under ROS2 humble.
+
+Lidar being used: PandarQT64 (Hesai)
