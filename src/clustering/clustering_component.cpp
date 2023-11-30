@@ -18,7 +18,7 @@
 ClusteringComponent::ClusteringComponent() : Node("pclsub")
 {
   subscriber_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
-    "/lidar/points", 
+    "/lidar/points", //topics of pointcloud2
     1, 
     std::bind(&ClusteringComponent::timer_callback, this, std::placeholders::_1)\
   );
@@ -45,7 +45,6 @@ void ClusteringComponent::timer_callback(const sensor_msgs::msg::PointCloud2::Sh
   // apply the filter to dereferenced cloudVoxel
   voxelGrid.filter(*cloud_filtered);
 
-  // LeafSizeを細かくしすぎると、エラーとなり、止まる
   // [pcl::VoxelGrid::applyFilter] Leaf size is too small for the input dataset. Integer indices would overflow.
 
   // SAC Segmentation
